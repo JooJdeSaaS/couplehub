@@ -32,7 +32,7 @@ def tempo(monkeypatch) -> RelogioFixo:
 @pytest.fixture
 def cliente(tempo):
     Base.metadata.drop_all(engine)
-    with TestClient(app) as c:  # executa o lifespan: cria tabelas e catálogo
+    with TestClient(app) as c:  # executa o lifespan: cria tabelas catálogo
         yield c
 
 
