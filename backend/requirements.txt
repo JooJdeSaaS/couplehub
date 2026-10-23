@@ -1,0 +1,12 @@
+# Python 3.11+ (usa enum.StrEnum)
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0.30
+pydantic[email]>=2.7
+pyjwt>=2.8
+cryptography>=42
+tzdata>=2024.1          # fusos horários no Windows (zoneinfo)
+
+# testes
+pytest>=8
+httpx>=0.27             # exigido pelo fastapi.testclient
