@@ -49,7 +49,7 @@ const post = (c, corpo) => requisitar(c, { metodo: 'POST', corpo });
 const put = (c, corpo) => requisitar(c, { metodo: 'PUT', corpo });
 const del = (c) => requisitar(c, { metodo: 'DELETE' });
 
-/** Um método por endpoint — espelha docs/plan.md §2. */
+/** Um endpoint — espelha docs/plan.md §2. */
 export const Api = {
   // conta e casal
   cadastrar: (nome, email, senha) => post('/auth/cadastro', { nome, email, senha }),
