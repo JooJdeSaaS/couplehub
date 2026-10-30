@@ -6,9 +6,14 @@
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "scheme": "couplehub",
-    "ios": { "supportsTablet": false },
-    "android": { "edgeToEdgeEnabled": true },
-    "web": { "bundler": "metro" },
-    "plugins": ["expo-secure-store"]
+    "ios": {
+      "supportsTablet": false
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

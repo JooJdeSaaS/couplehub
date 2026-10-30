@@ -14,7 +14,7 @@ function formatarFechamento(iso) {
 
 /** Painel inicial: tudo que importa a no máximo 2 toques (RNF04). */
 export default function InicioScreen({ navigation }) {
-  const { usuario, parceiro } = useAuth();
+  const { usuario, parceiro, sair } = useAuth();
   const { dados, carregando, recarregar } = useDados(
     async () => {
       const [placar, creditos, quizzes] = await Promise.all([Api.placarSemanal(), Api.creditos(), Api.quizzes()]);
@@ -76,6 +76,20 @@ export default function InicioScreen({ navigation }) {
         <Botao variante="secundario" titulo="Onde vamos? 🎲" aoPressionar={() => navigation.navigate('Decidir')} />
         <Botao variante="fantasma" titulo="Ideia de date em casa 🏠" aoPressionar={sugerirDateEmCasa} />
       </Cartao>
+
+      <Texto suave tamanho={13} estilo={{ textAlign: 'center', marginTop: 8 }}>
+        Conectado como {usuario.email}
+      </Texto>
+      <Botao
+        variante="fantasma"
+        titulo="Sair / trocar de conta"
+        aoPressionar={() =>
+          Alert.alert('Sair da conta?', 'Você poderá entrar de novo com outro e-mail.', [
+            { text: 'Cancelar', style: 'cancel' },
+            { text: 'Sair', style: 'destructive', onPress: sair },
+          ])
+        }
+      />
     </Tela>
   );
 }

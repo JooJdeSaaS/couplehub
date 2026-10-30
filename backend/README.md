@@ -15,6 +15,38 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 - `--host 0.0.0.0` é necessário para o celular (Expo Go) alcançar a API pela rede local.
 - Na primeira subida são criados `data/couplehub.db`, a chave de dev `data/.chave_dev` e o catálogo de 20 ideias de date.
 
+## Contas de teste (casal de demonstração)
+
+Não existe conta de administrador: pela RB04, os dados de um casal só são visíveis para os dois. Para testar tudo, crie o casal de demonstração **com a API rodando**, em outro terminal:
+
+```bash
+cd backend
+python scripts/criar_demo.py
+```
+
+| Conta | E-mail | Senha |
+| :--- | :--- | :--- |
+| Lucas (Parceiro A) | `lucas@couplehub.dev` | `couplehub123` |
+| Beatris (Parceiro B) | `beatris@couplehub.dev` | `couplehub123` |
+
+O script cria, pela própria API, dados em todos os módulos:
+- dois quizzes de sintonia encerrados, com pontos no ranking e um crédito de vale para cada um;
+- um quiz esperando palpites, um esperando correção e uma retrospectiva aberta;
+- seis vales (três de cada), uma rodada do "Onde vamos?" pendente e uma resolvida, e dates favoritados.
+
+No app, use **Sair / trocar de conta** (fim da tela Início) para alternar entre os dois, ou abra cada conta num celular.
+
+Rodar o script de novo não duplica nada. Para recomeçar do zero: pare a API, apague `data/couplehub.db`, suba a API e rode o script.
+
+### Testar a virada da semana sem esperar
+O ranking fecha na segunda-feira às 12:00. Em dev, dá para "avançar o relógio" da API:
+
+```bash
+COUPLEHUB_AVANCAR_DIAS=7 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Ao abrir o app, a semana fecha, o vencedor ganha o crédito `VENCEDOR_SEMANA` (e o `VENCEDOR_MES`, se for a última semana do mês), o histórico do ranking aparece e os quizzes com prazo vencido expiram ou encerram. Isso grava no banco, então volte ao normal apagando `data/couplehub.db`. Fora de `COUPLEHUB_AMBIENTE=dev` a variável é ignorada.
+
 ### Testar no Swagger
 1. `POST /auth/cadastro` duas vezes (Lucas e Beatris) e copie os tokens.
 2. Clique em **Authorize**, cole o token do Lucas → `POST /casais` → anote `codigo_convite`.

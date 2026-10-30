@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+# banco SQLite e chave de dev — nunca versionar
+backend/data/
+.env
+
+# Node / Expo
+node_modules/
+.expo/
+dist/
+web-build/
+*.log
+
+# SO / IDE
+.DS_Store
+.idea/
+.vscode/
