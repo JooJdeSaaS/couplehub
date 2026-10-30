@@ -228,7 +228,7 @@ def _registrar(ctx: Contexto, quiz: Quiz, respostas: list[RespostaEntrada], natu
 
 
 def _avaliar_automaticamente(ctx: Contexto, quiz: Quiz) -> None:
-    """Corrige palpites cujo gabarito já existe. No modo SINTONIA o gabarito
+    """Corrige todo palpite cujo gabarito já existe. No modo SINTONIA o gabarito
     do parceiro pode chegar depois do palpite; por isso a avaliação é retomada
     a cada envio."""
     for pergunta in quiz.perguntas:
